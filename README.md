@@ -42,5 +42,7 @@ We can take as many trials as we want. But Tr =12, Td = 8, Gr = 6, Gd = 3 seems 
 
 **Steps taken to suppress the non-thresholded cells at the edges.**
 All we need to do is just setting all the points which are out of range as 0. See the code as below:
+```
 RDM(union(1:(Tr+Gr),end-(Tr+Gr-1):end),:) = 0;  % Rows
 RDM(:,union(1:(Td+Gd),end-(Td+Gd-1):end)) = 0;  % Columns 
+```
