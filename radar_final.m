@@ -173,12 +173,8 @@ noise_level = zeros(1,1);
 %it a value of 1, else equate it to 0.
 
 
-   % Use RDM[x,y] as the matrix from the output of 2D FFT for implementing
-   % CFAR
-
-num_cells = (2*Tr+2*Gr+1)*(2*Td+2*Gd+1) - (2*Gr+1)*(2*Gd+1);
-
-threshold_cfar = [];
+% Use RDM[x,y] as the matrix from the output of 2D FFT for implementing
+% CFAR
 
 for i = (Gr+Tr+1):(length(RDM)-(Gr+Tr))
     row = [];
@@ -200,7 +196,6 @@ for i = (Gr+Tr+1):(length(RDM)-(Gr+Tr))
     end    
 end
         
-
 % *%TODO* :
 % The process above will generate a thresholded block, which is smaller 
 %than the Range Doppler Map as the CUT cannot be located at the edges of
@@ -210,12 +205,8 @@ end
 RDM(union(1:(Tr+Gr),end-(Tr+Gr-1):end),:) = 0;  % Rows
 RDM(:,union(1:(Td+Gd),end-(Td+Gd-1):end)) = 0;  % Columns 
 
-
-
-
 % *%TODO* :
 %display the CFAR output using the Surf function like we did for Range
 %Doppler Response output.
 figure,surf(doppler_axis,range_axis,RDM);
 colorbar;
-
