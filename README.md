@@ -1,6 +1,6 @@
 # SFND_Radar
 
-**Implementation steps for the 2D CFAR process.**
+## **Implementation steps for the 2D CFAR process.**
 The whole idea is similar to the 1D CFAR. 
 ![alt text](https://github.com/XunOuyang/SFND_Radar/blob/master/image/cfar2dbands.png)
 
@@ -22,7 +22,7 @@ The whole idea is similar to the 1D CFAR.
 3. We sum the values within the bigger and smaller rectangle and convert the value from logarithmic to linear using db2pow function respetively. After the noise offset is added, we will get the final threshold. 
  
 
-**Selection of Training, Guard cells and offset.**
+## **Selection of Training, Guard cells and offset.**
 1. From instinct, I select Tr=10, Td=8, Gr=6, Gd=3, offset=3.
     Based on rule of thumb, we do not usually use guard width 1, as it is too narrow for us. Especially the width of the whole data matrix is greater than 100. So 3 is selected here. As the guard width is 3, 1.5 times to 3 times of training cells will be an good option. As we have more rows than columns, so the 6 is taken as the Gr, and 12 is selected as Tr. offset 3 is selected from the previous quiz.
 2. After we ran the code, we saw the result as below:
@@ -43,7 +43,7 @@ Tr  Td  Gr  Gd  min_V max_V
 We can take as many trials as we want. But Tr =12, Td = 8, Gr = 6, Gd = 3 seems to provide us a pretty decent performance.
 
 
-**Steps taken to suppress the non-thresholded cells at the edges.**
+## **Steps taken to suppress the non-thresholded cells at the edges.**
 All we need to do is just setting all the points which are out of range as 0. See the code as below:
 ```
 RDM(union(1:(Tr+Gr),end-(Tr+Gr-1):end),:) = 0;  % Rows
